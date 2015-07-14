@@ -4,7 +4,8 @@
   "description": "synchronous/asynchronous state machine",
   "main": "statemachine.js",
   "scripts": {
-    "test": "karma karma.conf.js"
+    "test": "karma karma.conf.js",
+    "build": "npm run test && uglifyjs statemachine.js -c -m -o statemachine.min.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,14 @@
   "bugs": {
     "url": "https://github.com/mario-st/state-machine/issues"
   },
-  "homepage": "https://github.com/mario-st/state-machine#readme"
+  "homepage": "https://github.com/mario-st/state-machine#readme",
+  "devDependencies": {
+    "karma-coverage": "^0.4.2",
+    "karma-mocha": "^0.2.0",
+    "karma-mocha-debug": "^0.1.2",
+    "karma-mocha-reporter": "^1.0.2",
+    "mocha": "^2.2.5",
+    "should": "^7.0.2",
+    "uglify-js": "^2.4.23"
+  }
 }
