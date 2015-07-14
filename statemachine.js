@@ -50,25 +50,26 @@ function StateMachine(name, stateLimit, loggingEnabled) {
     return context;
   };
 
-  /**
-   * remove a transition
-   * @param {Array} context
-   */
-  me.remove = function (context) {
-    for (var i = me.trns.length - 1; i >= 0; i--) {
-      var transition = me.trns[i];
-      if (transition === context) {
-        me.trns.splice(i, 1);
-      }
-    }
-  };
+  // TODO buggy
+  // /**
+   // * remove a transition
+   // * @param {Array} context
+   // */
+  // me.remove = function (context) {
+    // for (var i = me.trns.length - 1; i >= 0; i--) {
+      // var transition = me.trns[i];
+      // if (transition === context) {
+        // me.trns.splice(i, 1);
+      // }
+    // }
+  // };
 
   /**
    * change to new state
    * @param {string} state
    * @param {*} [args=undefined]
    */
-  me.toState = function (state, args) {
+  me.to = function (state, args) {
     if (locked) {
       return;
     }

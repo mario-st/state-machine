@@ -1,0 +1,26 @@
+{
+  "name": "state-machine",
+  "version": "1.0.0",
+  "description": "synchronous/asynchronous state machine",
+  "main": "statemachine.js",
+  "scripts": {
+    "test": "karma karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mario-st/state-machine.git"
+  },
+  "keywords": [
+    "state-machine",
+    "async",
+    "sync",
+    "state",
+    "machine"
+  ],
+  "author": "Mario Stöcklein",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mario-st/state-machine/issues"
+  },
+  "homepage": "https://github.com/mario-st/state-machine#readme"
+}
