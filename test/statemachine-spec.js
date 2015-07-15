@@ -25,7 +25,15 @@ describe("StateMachine", function () {
 
   describe("::add", function () {
     it("should accept string states", function () {
-
+      var sm = new StateMachine("sm");
+      sm.add("a", "b", function (from, to) {
+        from.should.be.eql("a");
+        to.should.be.eql("b");
+        //should.equal(args, undefined, "should be undefined");
+        return 1;
+      });
+      sm.to("a");
+      sm.to("b");
     });
 
     describe("#async", function () {

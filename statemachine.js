@@ -38,6 +38,7 @@
 
     /**
      * write into console
+     * @memberOf StateMachine#
      * @param {number} level
      * @param msg
      */
@@ -51,32 +52,37 @@
 
     /**
      * enables/disables logging
+     * @memberOf StateMachine#
      * @param {number} level
      */
-    me.setLogLevel = function (level) {
+    var setLogLevel = function (level) {
       logLevel = level;
     };
+    me.setLogLevel = setLogLevel;
 
     /**
      * add a transition
+     * @memberOf StateMachine#
      * @param {*} from
      * @param {*} to
      * @param {*} onStart
      * @param {function} [onExit]
      * @returns {Array} context of the transition
      */
-    me.add = function (from, to, onStart, onExit) {
+    var add = function (from, to, onStart, onExit) {
       var context = [from, to, onStart, onExit];
       me[transitions][push](context);
       return context;
     };
+    me.add = add;
 
     /**
      * change to new state
+     * @memberOf StateMachine#
      * @param {*} state
      * @param {*} [args=undefined]
      */
-    me.to = function (state, args) {
+    var to = function (state, args) {
       if (locked) {
         return;
       }
@@ -159,6 +165,7 @@
 
       changeState(args);
     };
+    me.to = to;
   };
 
   // AMD
