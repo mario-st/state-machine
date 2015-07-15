@@ -5,7 +5,7 @@
   "main": "statemachine.js",
   "scripts": {
     "test": "karma karma.conf.js",
-    "build": "npm run test && uglifyjs statemachine.js -c -m -o statemachine.min.js"
+    "build": "uglifyjs statemachine.js -c -m -o statemachine.min.js"
   },
   "repository": {
     "type": "git",
