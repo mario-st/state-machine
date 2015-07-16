@@ -14,7 +14,7 @@ initializes the state machine.
 | stateLimit      | number  | (optional) the limit of the state history (default: 5) |
 | loggingEnabled  | boolean | (optional) enables/disables logging                    |
 
-### ::add(from:any, to:any, onStart:function[, onExit:function])
+### #add(from:any, to:any, onStart:function[, onExit:function]):Array
 
 adds a transition to the machine.
 
@@ -25,7 +25,18 @@ adds a transition to the machine.
 | onStart   | function or any | the transition start callback                  |
 | onExit    | function        | (optional) called at the end of the transition |
 
-### ::to(state:any[, args:any])
+Returns the transition context array: [from, to, onStart, onExit]
+
+### #remove(context:Array):void
+
+removes a transition from the machine. It must be
+exactly the context of a transition.
+
+| Arguments | Type            | Description                                    |
+| --------- | --------------- | ---------------------------------------------- |
+| context   | Array           | the context returned by #add()                 |
+
+### #to(state:any[, args:any]):void
 
 changes the state to the new given state. Optionally you can add
 some additional information to the state as last parameter.
@@ -34,14 +45,6 @@ some additional information to the state as last parameter.
 | --------- | --------------- | ---------------------------------------------- |
 | state     | any             | the new state to change                        |
 | args      | any             | (optional) additional information to the state |
-
-### ::setLogLevel(level:number)
-
-enables/disables logging
-
-| Arguments | Type            | Description                                    |
-| --------- | --------------- | ---------------------------------------------- |
-| level     | number          | defines the log level (default: 1)             |
 
 ## Sending Arguments with state
 

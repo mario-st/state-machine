@@ -9,7 +9,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mario-st/state-machine.git"
+    "url": "git://github.com/mario-st/state-machine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mario-st/state-machine/issues"
   },
   "keywords": [
     "state-machine",
@@ -18,7 +21,10 @@
     "state",
     "machine"
   ],
-  "author": "Mario Stöcklein",
+  "author": {
+    "name": "Mario Stöcklein",
+    "email": "mario.stoecklein@gmail.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mario-st/state-machine/issues"

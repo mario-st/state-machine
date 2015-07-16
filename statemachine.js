@@ -6,13 +6,12 @@
     len = 'length',
     push = 'push',
     call = 'call',
+    splice = 'splice',
     fromStr = 'from',
     toStr = 'to',
     argsStr = 'args',
     wildcard = '*',
-    undefStr = 'undefined',
     className = 'StateMachine',
-    slice = Array.prototype.slice,
     typed = { "function": true, "object": true },
     root = typed[typeof window] && window || typed[typeof self] && self || {};
 
@@ -21,44 +20,18 @@
    * @constructor
    * @param {string} name
    * @param {number} [stateLimit=5] the limitation of the state history
-   * @param {number} [logLevel=1] enables/disables logging
    */
-  root[className] = function (name, stateLimit, logLevel) {
+  root[className] = function (name, stateLimit) {
     var me = this, locked = false, current = {};
     var FROM = 0, TO = 1, ON_START = 2, ON_EXIT = 3;
 
     me.name = className;
     stateLimit = stateLimit || 5;
-    logLevel = typeof logLevel === undefStr ? 1 : logLevel;
 
     me[states] = [];
     me[transitions] = [];
 
     var stateIndex = 0;
-
-    /**
-     * write into console
-     * @memberOf StateMachine#
-     * @param {number} level
-     * @param msg
-     */
-    var log = function (level, msg) {
-      msg = slice[call](arguments, 1);
-      if (level >= logLevel) {
-        console.log.apply(console, [name + '(' + current[fromStr] + ' -> ' + current[toStr] + '):'].concat(msg || []));
-      }
-    };
-    me.log = log;
-
-    /**
-     * enables/disables logging
-     * @memberOf StateMachine#
-     * @param {number} level
-     */
-    var setLogLevel = function (level) {
-      logLevel = level;
-    };
-    me.setLogLevel = setLogLevel;
 
     /**
      * add a transition
@@ -75,6 +48,17 @@
       return context;
     };
     me.add = add;
+
+    var remove = function (context) {
+      var trns = me[transitions];
+      for (var i = 0, l = trns[len]; i < l; i++) {
+        if (trns[i] === context) {
+          trns[splice](i, 1);
+          return;
+        }
+      }
+    };
+    me.remove = remove;
 
     /**
      * change to new state
@@ -97,7 +81,7 @@
       fromState = history[ptr] || null;
       toState = history[ptr + 1];
 
-      history.splice(0, history[len] - stateLimit);
+      history[splice](0, history[len] - stateLimit);
       stateIndex = 0;
 
       /**
@@ -113,13 +97,8 @@
           // asynchronous response
           var next = function (args) {
             locked = false;
-
-            log(0, 'after start');
-
             if (transition[ON_EXIT]) {
-              log(0, 'before exit', args !== undef ? args : '');
               transition[ON_EXIT][call](me, fromState, toState, args);
-              log(0, 'after exit');
             }
             if (!sync && index === stateIndex && ++stateIndex < transitionObj[len]) {
               changeState(args);
@@ -129,8 +108,6 @@
           current[fromStr] = fromState;
           current[toStr] = toState;
           current[argsStr] = args;
-
-          log(0, 'before start', args !== undef ? args : '');
 
           // five possibilities:
           // 1. it is a function with synchronous response (returns a value different to undefined)
