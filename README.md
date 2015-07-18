@@ -57,7 +57,7 @@ var sm = new StateMachine("sync");
 sm.add("a", "b", function onStart(from, to, args) {
 	return "hello, world!";
 }, function onExit(from, to, args) {
-	this.log(1, args);
+	console.log("onExit:", args);
 });
 
 sm.to("a");
@@ -76,7 +76,7 @@ sm.add("a", "b", function onStart(from, to, args, done) {
 		done("hello, world!");
 	}, 500);
 }, function onExit(from, to, args) {
-	this.log(1, args);
+	console.log("onExit:", args);
 });
 
 sm.to("a");
