@@ -4,7 +4,7 @@ A state machine with asynchronous and synchronous transitions.
 
 ## class StateMachine
 
-### constructor(name:string[, stateLimit:number[, loggingEnabled:boolean]])
+### constructor(name:string, [stateLimit:number], [loggingEnabled:boolean])
 
 initializes the state machine.
 
@@ -14,7 +14,7 @@ initializes the state machine.
 | stateLimit      | number  | (optional) the limit of the state history (default: 5) |
 | loggingEnabled  | boolean | (optional) enables/disables logging                    |
 
-### ::add(from:any, to:any, onStart:function[, onExit:function]):Array
+### add(from:any, to:any, onStart:function, [onExit:function]):Array
 
 adds a transition to the machine.
 
@@ -27,7 +27,7 @@ adds a transition to the machine.
 
 Returns the transition context array: [from, to, onStart, onExit]
 
-### ::remove(context:Array):void
+### remove(context:Array):StateMachine
 
 removes a transition from the machine. It must be
 exactly the context of a transition.
@@ -36,7 +36,7 @@ exactly the context of a transition.
 | --------- | --------------- | ---------------------------------------------- |
 | context   | Array           | the context reference returned by #add()       |
 
-### ::to(state:any[, args:any]):void
+### to(state:any, [args:any, ...]):StateMachine
 
 changes the state to the new given state. Optionally you can add
 some additional information to the state as last parameter.
@@ -82,3 +82,23 @@ sm.add("a", "b", function onStart(from, to, args, done) {
 sm.to("a");
 sm.to("b");
 ```
+
+## Chaining
+
+```javascript
+var sm = new StateMachine("chained");
+
+// add cannot be chained
+sm.add("b", "c", function () { console.log("hello, universe!"); return 1;});
+
+sm.to("a").to("b").to("c").remove(bcContext);
+```
+
+## Browser/NodeJS?
+
+I'm not sure if it works everywhere and I don't even care much. I think it is safe for every modern browser. It also works well on NodeJS.
+
+## Some plans?
+
+No, not really. Probably I should reconsider the locking mechanism and the chaining thing.
+Feel free to fork, make pull-requests and write some issues if you like.
