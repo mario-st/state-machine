@@ -48,7 +48,6 @@ describe("StateMachine", function () {
       });
 
       it("accept anything as a state", function () {
-        this.timeout(60000);
         var stateA = null, stateB = false, stateC = undefined,
           stateD = {}, stateE = [], stateF = Math.PI;
         var sm = new StateMachine("sm");
