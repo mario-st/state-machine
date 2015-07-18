@@ -34,19 +34,18 @@ exactly the context of a transition.
 
 | Arguments | Type            | Description                                    |
 | --------- | --------------- | ---------------------------------------------- |
-| context   | Array           | the context returned by #add()                 |
+| context   | Array           | the context reference returned by #add()       |
 
 ### ::to(state:any[, args:any]):void
 
 changes the state to the new given state. Optionally you can add
 some additional information to the state as last parameter.
 
-| Arguments | Type            | Description                                    |
-| --------- | --------------- | ---------------------------------------------- |
-| state     | any             | the new state to change                        |
-| args      | any             | (optional) additional information to the state |
-
-## Sending Arguments with state
+| Arguments | Type            | Description                                           |
+| --------- | --------------- | ----------------------------------------------------- |
+| state     | any             | the new state to change                               |
+| args      | any             | (optional) additional information to the state        |
+| onReady   | function        | (optional) will be triggered after transition is done |
 
 ## Synchronous transitions
 
