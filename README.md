@@ -89,7 +89,7 @@ sm.to("b");
 var sm = new StateMachine("chained");
 
 // add cannot be chained
-sm.add("b", "c", function () { console.log("hello, universe!"); return 1;});
+bcContext = sm.add("b", "c", function () { console.log("hello, universe!"); return 1;});
 
 sm.to("a").to("b").to("c").remove(bcContext);
 ```
