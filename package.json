@@ -2,10 +2,11 @@
   "name": "state-machine",
   "version": "1.0.0",
   "description": "synchronous/asynchronous state machine",
-  "main": "statemachine.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "karma karma.conf.js",
-    "build": "uglifyjs statemachine.js -c -m -o statemachine.min.js"
+    "build": "node ./build/build",
+    "uglify": "uglifyjs dist/state-machine.js -c -m -o dist/state-machine.min.js"
   },
   "repository": {
     "type": "git",

@@ -12,6 +12,7 @@
     argsStr = 'args',
     wildcard = '*',
     className = 'StateMachine',
+    typedFn = { "function": true },
     typed = { "function": true, "object": true },
     root = typed[typeof window] && window || typed[typeof self] && self || {};
 
@@ -49,14 +50,21 @@
     };
     me.add = add;
 
+    /**
+     * removes a transition
+     * @memberOf StateMachine#
+     * @param context
+     * @returns {StateMachine}
+     */
     var remove = function (context) {
       var trns = me[transitions];
       for (var i = 0, l = trns[len]; i < l; i++) {
         if (trns[i] === context) {
           trns[splice](i, 1);
-          return;
+          break;
         }
       }
+      return this;
     };
     me.remove = remove;
 
@@ -65,10 +73,12 @@
      * @memberOf StateMachine#
      * @param {*} state
      * @param {*} [args=undefined]
+     * @param {function} [onReady=undefined]
+     * @returns {StateMachine}
      */
-    var to = function (state, args) {
+    var to = function (state, args, onReady) {
       if (locked) {
-        return;
+        return this;
       }
 
       var ptr, fromState, toState, history, transitionObj;
@@ -100,7 +110,10 @@
             if (transition[ON_EXIT]) {
               transition[ON_EXIT][call](me, fromState, toState, args);
             }
-            if (!sync && index === stateIndex && ++stateIndex < transitionObj[len]) {
+            if (onReady) {
+              onReady[call](me, fromState, toState, args);
+            }
+            if (index === stateIndex && ++stateIndex < transitionObj[len]) {
               changeState(args);
             }
           };
@@ -112,7 +125,7 @@
           // five possibilities:
           // 1. it is a function with synchronous response (returns a value different to undefined)
           // 2. it is a function with asynchronous response (calls the next() callback and returns undefined)
-          if (typed[typeof transition[ON_START]]) {
+          if (typedFn[typeof transition[ON_START]]) {
             args = transition[ON_START][call](me, fromState, toState, args, next);
           }
           // 3. it is not a function and the transition is the response
@@ -141,6 +154,7 @@
       };
 
       changeState(args);
+      return this;
     };
     me.to = to;
   };

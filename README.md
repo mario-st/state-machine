@@ -14,7 +14,7 @@ initializes the state machine.
 | stateLimit      | number  | (optional) the limit of the state history (default: 5) |
 | loggingEnabled  | boolean | (optional) enables/disables logging                    |
 
-### #add(from:any, to:any, onStart:function[, onExit:function]):Array
+### ::add(from:any, to:any, onStart:function[, onExit:function]):Array
 
 adds a transition to the machine.
 
@@ -27,7 +27,7 @@ adds a transition to the machine.
 
 Returns the transition context array: [from, to, onStart, onExit]
 
-### #remove(context:Array):void
+### ::remove(context:Array):void
 
 removes a transition from the machine. It must be
 exactly the context of a transition.
@@ -36,7 +36,7 @@ exactly the context of a transition.
 | --------- | --------------- | ---------------------------------------------- |
 | context   | Array           | the context returned by #add()                 |
 
-### #to(state:any[, args:any]):void
+### ::to(state:any[, args:any]):void
 
 changes the state to the new given state. Optionally you can add
 some additional information to the state as last parameter.

@@ -16,14 +16,15 @@ module.exports = function (config) {
       // source files, that you wanna generate coverage for
       // do not include tests or libraries
       // (these files will be instrumented by Istanbul)
-      'statemachine.js': ['coverage']
+      'lib/index.js': ['coverage']
     },
 
     // list of files / patterns to load in the browser
     files: [
       'node_modules/should/should.js',
-      'statemachine.js',
-      'test/**/*.js'
+      'test/helper.js',
+      'lib/index.js',
+      'test/statemachine-spec.js'
     ],
 
     // Test results reporter to use
