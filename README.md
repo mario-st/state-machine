@@ -49,6 +49,25 @@ some additional information to the state as last parameter.
 | args      | any             | (optional) additional information to the state               |
 | onReady   | function        | (optional) will be triggered after every matching transition |
 
+## Require in NodeJS
+
+```javascript
+var StateMachine = require("state-machine").StateMachine;
+
+var sm = new StateMachine();
+// etc. ...
+```
+
+## Load in Browser
+
+```html
+<script src="path/to/go/state-machine.js"></script>
+<script>
+var sm = new StateMachine();
+// etc. ...
+</script>
+```
+
 ## Synchronous transitions
 
 The machine will immediately execute the transition.
@@ -94,26 +113,6 @@ var sm = new StateMachine();
 bcContext = sm.add("b", "c", function () { console.log("hello, universe!"); return 1;});
 
 sm.to("a").to("b").to("c").remove(bcContext);
-```
-
-
-## Require in NodeJS
-
-```javascript
-var StateMachine = require("state-machine").StateMachine;
-
-var sm = new StateMachine();
-// etc. ...
-```
-
-## Load in Browser
-
-```html
-<script src="path/to/go/state-machine.js"></script>
-<script>
-var sm = new StateMachine();
-// etc. ...
-</script>
 ```
 
 ## Browser/NodeJS?
