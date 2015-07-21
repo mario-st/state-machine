@@ -1,5 +1,7 @@
 # state-machine
 
+<img title="Build Status Images" src="https://travis-ci.org/mario-st/state-machine.svg">
+
 A state machine with asynchronous and synchronous transitions.
 
 ## class StateMachine
