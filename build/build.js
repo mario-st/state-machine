@@ -1,12 +1,8 @@
 var fs = require("fs");
 var path = require("path");
-var pkg = require("../package.json");
 var exec = require("child_process").exec;
-
 var root = path.join(__dirname, "..");
-
-var basename = pkg.name;
-var srcFile = path.join(root, "dist", basename + ".js");
+var srcFile = path.join(root, "dist", "state-machine.js");
 
 fs.writeFileSync(srcFile, [
   fs.readFileSync(path.join(root, "build", "intro.frag")),
@@ -20,4 +16,5 @@ exec("npm run uglify", {cwd: root}, function (err, stdout, stderr) {
   if (err !== null) {
     console.log('exec error: ' + err);
   }
+  process.exit(0);
 });

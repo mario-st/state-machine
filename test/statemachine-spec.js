@@ -6,12 +6,12 @@ describe("StateMachine", function () {
 
   describe("constructor", function () {
     it("is an instance of StateMachine", function () {
-      var sm = new StateMachine("sm");
+      var sm = new StateMachine();
       sm.should.be.instanceOf(StateMachine);
     });
 
     it("holds 5 states by default", function () {
-      var sm = new StateMachine("sm");
+      var sm = new StateMachine();
       for (var i = 0, l = 6; i < l; i++) {
         sm.to(i);
       }
@@ -21,7 +21,7 @@ describe("StateMachine", function () {
     });
 
     it("holds the given state limit", function () {
-      var sm = new StateMachine("sm", 3);
+      var sm = new StateMachine(3);
       for (var i = 0, l = 6; i < l; i++) {
         sm.to(i);
       }
@@ -35,7 +35,7 @@ describe("StateMachine", function () {
 
     describe("::add", function () {
       it("accept string states", function () {
-        var sm = new StateMachine("sm");
+        var sm = new StateMachine();
         sm.add("a", "b", function (from, to, args, next) {
           setTimeout(function () {
             from.should.be.eql("a");
@@ -50,7 +50,7 @@ describe("StateMachine", function () {
       it("accept anything as a state", function () {
         var stateA = null, stateB = false, stateC = undefined,
           stateD = {}, stateE = [], stateF = Math.PI;
-        var sm = new StateMachine("sm");
+        var sm = new StateMachine();
 
         sm.add(stateA, stateB, function (from, to, args, next) {
           setTimeout(function () {
@@ -99,7 +99,7 @@ describe("StateMachine", function () {
       });
 
       it("uses anything except null or function as a static argument", function () {
-        var sm = new StateMachine("sm");
+        var sm = new StateMachine();
         sm.add(null, "a", "hello, world!", function onExit(from, to, str) {
           str.should.be.eql("hello, world!");
         });
@@ -110,7 +110,7 @@ describe("StateMachine", function () {
     describe("::remove", function () {
 
       it("remove transition reference", function () {
-        var sm = new StateMachine("sm");
+        var sm = new StateMachine();
 
         var onStart = function () {
           return 1;
@@ -130,7 +130,7 @@ describe("StateMachine", function () {
       });
 
       it("does not remove transition copy", function () {
-        var sm = new StateMachine("sm");
+        var sm = new StateMachine();
 
         var onStart = function () {
           return 1;
@@ -154,7 +154,7 @@ describe("StateMachine", function () {
     describe("::to", function () {
 
       it("append arguments", function () {
-        var sm = new StateMachine("sm");
+        var sm = new StateMachine();
         sm.add("a", "b", null, function onExit(from, to, args) {
           from.should.be.eql("a");
           to.should.be.eql("b");
@@ -166,7 +166,7 @@ describe("StateMachine", function () {
       });
 
       it("accepts wildcards", function () {
-        var sm = new StateMachine("sm"), i = 0;
+        var sm = new StateMachine(), i = 0;
         sm.add("*", "a", function () {
           return i++;
         }, function (from, to, index) {
@@ -184,7 +184,7 @@ describe("StateMachine", function () {
       });
 
       it("locks on asynchronous transition", function (done) {
-        var sm = new StateMachine("sm");
+        var sm = new StateMachine();
         sm.add(null, "a", function (from, to, args, next) {
           setTimeout(function () {
             next();
@@ -210,7 +210,7 @@ describe("StateMachine", function () {
 
     describe("::add", function () {
       it("accept string states", function () {
-        var sm = new StateMachine("sm");
+        var sm = new StateMachine();
         sm.add("a", "b", function (from, to) {
           from.should.be.eql("a");
           to.should.be.eql("b");
@@ -223,7 +223,7 @@ describe("StateMachine", function () {
       it("accept anything as a state", function () {
         var stateA = null, stateB = false, stateC = undefined,
           stateD = {}, stateE = [], stateF = Math.PI;
-        var sm = new StateMachine("sm");
+        var sm = new StateMachine();
 
         sm.add(stateA, stateB, function (from, to) {
           should.assert(from === stateA);
@@ -253,7 +253,7 @@ describe("StateMachine", function () {
       });
 
       it("uses anything except null or function as a static argument", function () {
-        var sm = new StateMachine("sm");
+        var sm = new StateMachine();
         sm.add(null, "a", "hello, world!", function onExit(from, to, str) {
           str.should.be.eql("hello, world!");
         });
@@ -265,7 +265,7 @@ describe("StateMachine", function () {
     describe("::remove", function () {
 
       it("remove transitions", function () {
-        var sm = new StateMachine("sm");
+        var sm = new StateMachine();
 
         var onStart = function () {
           return 1;
@@ -289,7 +289,7 @@ describe("StateMachine", function () {
     describe("::to", function () {
 
       it("append arguments", function () {
-        var sm = new StateMachine("sm");
+        var sm = new StateMachine();
         sm.add("a", "b", null, function onExit(from, to, args) {
           from.should.be.eql("a");
           to.should.be.eql("b");
@@ -301,7 +301,7 @@ describe("StateMachine", function () {
       });
 
       it("accepts wildcards", function () {
-        var sm = new StateMachine("sm"), i = 0;
+        var sm = new StateMachine(), i = 0;
         sm.add("*", "a", function () {
           return i++;
         }, function (from, to, index) {
@@ -319,7 +319,7 @@ describe("StateMachine", function () {
       });
 
       it("has no transition start", function () {
-        var sm = new StateMachine("sm");
+        var sm = new StateMachine();
         sm.add(null, "a", null, function onExit(from, to, args) {
           should.assert(args === null);
         });

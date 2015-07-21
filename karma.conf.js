@@ -8,7 +8,7 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'mocha-debug'],
     logLevel: config.LOG_INFO,
     port: 9876,
 
@@ -29,7 +29,7 @@ module.exports = function (config) {
 
     // Test results reporter to use
     // https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['mocha-debug', 'progress', 'coverage'],
+    reporters: ['progress', 'coverage'],
 
     plugins: ['karma-mocha', 'karma-mocha-reporter', 'karma-mocha-debug', 'karma-phantomjs-launcher', 'karma-coverage'],
 

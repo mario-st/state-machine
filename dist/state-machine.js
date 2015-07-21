@@ -17,16 +17,14 @@ var undef,
   argsStr = 'args',
   wildcard = '*',
   className = 'StateMachine',
-  typedFn = { "function": true },
-  typed = { "function": true, "object": true };
+  typedFn = { "function": true };
 
 /**
  * @class StateMachine
  * @constructor
- * @param {string} name
  * @param {number} [stateLimit=5] the limitation of the state history
  */
-exports[className] = function (name, stateLimit) {
+exports[className] = function (stateLimit) {
   var me = this, locked = false, current = {};
   var FROM = 0, TO = 1, ON_START = 2, ON_EXIT = 3;
 
@@ -162,6 +160,8 @@ exports[className] = function (name, stateLimit) {
   };
   me.to = to;
 };
+
+  var typed = { "function": true, "object": true };
 
   // AMD
   if (typed[typeof define] && typed[typeof define.amd] && define.amd) {
