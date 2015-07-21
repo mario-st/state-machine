@@ -12,9 +12,7 @@ initializes the state machine.
 
 | Arguments       | Type    | Description                                            |
 | --------------- | ------- | ------------------------------------------------------ |
-| name            | string  | the name of the state machine (useful for logging)     |
 | stateLimit      | number  | (optional) the limit of the state history (default: 5) |
-| loggingEnabled  | boolean | (optional) enables/disables logging                    |
 
 ### add(from:any, to:any, onStart:function, [onExit:function]):Array
 
