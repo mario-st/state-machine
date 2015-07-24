@@ -6,13 +6,14 @@ A state machine with asynchronous and synchronous transitions.
 
 ## class StateMachine
 
-### constructor([stateLimit:number])
+### constructor([stateLimit:number], [strict:boolean])
 
 initializes the state machine.
 
-| Arguments       | Type    | Description                                            |
-| --------------- | ------- | ------------------------------------------------------ |
-| stateLimit      | number  | (optional) the limit of the state history (default: 5) |
+| Arguments       | Type    | Description                                                                                       |
+| --------------- | ------- | ------------------------------------------------------------------------------------------------- |
+| stateLimit      | number  | (optional) the limit of the state history (default: 5)                                            |
+| strict          | boolean | (optional) enables/disables strict transitions / unregistered transitions will throw an exception |
 
 ### add(from:any, to:any, onStart:function, [onExit:function]):Array
 
@@ -27,7 +28,16 @@ adds a transition to the machine.
 
 Returns the transition context array: [from, to, onStart, onExit]
 
-### remove(context:Array):StateMachine
+### setStrict(enabled:boolean):this
+
+removes a transition from the machine. It must be
+exactly the context of a transition.
+
+| Arguments | Type            | Description                                    																				 |
+| --------- | --------------- | -------------------------------------------------------------------------------------- |
+| enabled   | boolean         | enables/disables strict transitions / unregistered transitions will throw an exception |
+
+### remove(context:Array):this
 
 removes a transition from the machine. It must be
 exactly the context of a transition.
@@ -36,7 +46,7 @@ exactly the context of a transition.
 | --------- | --------------- | ---------------------------------------------- |
 | context   | Array           | the context reference returned by #add()       |
 
-### to(state:any, [args:any], [onReady:function]):StateMachine
+### to(state:any, [args:any], [onReady:function]):this
 
 changes the state to the new given state. Optionally you can add
 some additional information to the state as last parameter.

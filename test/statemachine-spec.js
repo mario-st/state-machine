@@ -330,4 +330,37 @@ describe("StateMachine", function () {
 
   });
 
+  describe("#strict", function () {
+
+    it("throws in strict mode from setStrict()", function () {
+      var sm = new StateMachine();
+      sm.setStrict(true);
+      sm.add(null, 1, "valid", function (from, to, args) {
+        args.should.be.eql("valid");
+      });
+      sm.to(1, null, function () {
+        (function () {
+          sm.to(2);
+        }).should.throw("The transition is invalid.");
+        sm.lastState.should.be.eql(1);
+      });
+    });
+
+    it("throws in strict mode from constructor", function () {
+      // first parameter is not a number, so the default value will be 5
+      // second parameter enables strict mode
+      var sm = new StateMachine(null, true);
+      sm.add(null, 1, "valid", function (from, to, args) {
+        args.should.be.eql("valid");
+      });
+      sm.to(1, null, function () {
+        (function () {
+          sm.to(2);
+        }).should.throw("The transition is invalid.");
+        sm.lastState.should.be.eql(1);
+      });
+    });
+
+  });
+
 });
