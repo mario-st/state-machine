@@ -1,6 +1,6 @@
 {
   "name": "state-machine",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "synchronous/asynchronous state machine",
   "main": "lib/index.js",
   "scripts": {
