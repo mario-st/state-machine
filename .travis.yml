@@ -2,3 +2,5 @@ language: node_js
 node_js:
   - "0.12"
   - "iojs"
+before_install: sudo pip install codecov
+after_success: codecov
