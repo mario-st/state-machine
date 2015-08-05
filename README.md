@@ -1,7 +1,8 @@
 # state-machine
 
 [![travis-ci.org](https://travis-ci.org/mario-st/state-machine.svg?branch=master)](https://travis-ci.org/mario-st/state-machine?branch=master)
-[![codecov.io](http://codecov.io/github/mario-st/state-machine/coverage.svg?branch=master)](http://codecov.io/github/mario-st/state-machine?branch=master)
+[![Dependency Status](https://david-dm.org/mario-st/state-machine.svg)](https://david-dm.org/mario-st/state-machine)
+[![devDependency Status](https://david-dm.org/mario-st/state-machine/dev-status.svg)](https://david-dm.org/mario-st/state-machine#info=devDependencies)
 
 A state machine with asynchronous and synchronous transitions.
 

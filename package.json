@@ -29,6 +29,7 @@
   "license": "MIT",
   "homepage": "https://github.com/mario-st/state-machine",
   "devDependencies": {
+    "codecov.io": "^0.1.5",
     "karma-coverage": "^0.4.2",
     "karma-mocha": "^0.2.0",
     "karma-mocha-debug": "^0.1.2",
