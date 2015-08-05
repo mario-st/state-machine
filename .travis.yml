@@ -3,6 +3,6 @@ node_js:
   - "0.12"
   - "iojs"
 before_install: 
-  pip install codecov
+  - pip install codecov
 after_success:
-  codecov
+  - codecov
