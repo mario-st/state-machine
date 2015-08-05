@@ -1,6 +1,7 @@
 # state-machine
 
-<img title="Build Status Images" src="https://travis-ci.org/mario-st/state-machine.svg">
+[![travis-ci.org](https://travis-ci.org/mario-st/state-machine.svg?branch=master)](https://travis-ci.org/mario-st/state-machine?branch=master)
+[![codecov.io](http://codecov.io/github/mario-st/state-machine/coverage.svg?branch=master)](http://codecov.io/github/mario-st/state-machine?branch=master)
 
 A state machine with asynchronous and synchronous transitions.
 
